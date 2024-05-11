@@ -4,26 +4,21 @@
  * @return {number}
  */
 var maximumSubarraySum = function(nums, k) {
-  let high = 0;
-  let n = nums.length;
-
-  for (let i = 0; i <= n - k; i++) {
-    let subarray = nums.slice(i, i + k);
-    let freq = {};
-    let distinct = true;
-
-    for (let j = 0; j < subarray.length; j++) {
-      if (freq[subarray[j]]) {
-        distinct = false;
-        break;
-      } else {
-        freq[subarray[j]] = true;
+  let freq = {}, maxSum = 0, sum = 0, left = 0;
+  for(let right = 0; right < nums.length; right++){
+      while(freq[nums[right]] && left <= right){
+          sum -= nums[left];
+          freq[nums[left]]--;
+          left++;
       }
-    }
-
-    if (distinct) {
-      high = Math.max(high, subarray.reduce((a, b) => a + b, 0));
-    }
+      freq[nums[right]] = (freq[nums[right]] || 0) + 1;
+      sum += nums[right];
+      if(right - left + 1 == k) {
+          maxSum = Math.max(maxSum, sum);
+          sum -= nums[left];
+          freq[nums[left]]--;
+          left++;
+      }
   }
-  return high;
+  return maxSum;    
 };
