@@ -3,5 +3,5 @@
  * @return {string}
  */
 var removeTrailingZeros = function(num) {
-  return parseInt(num.split('').reverse().join('')).toString().split('').reverse().join('');
+  return BigInt(num.split('').reverse().join('')).toString().split('').reverse().join('');
 };
