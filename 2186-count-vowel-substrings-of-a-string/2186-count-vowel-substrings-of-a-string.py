@@ -4,8 +4,7 @@ class Solution:
         n = len(word)
 
         return sum(
-            sum(
-                1 for end_pos in range(start, n)
-                if set(word[start:end_pos + 1]).issubset(vowels) and vowels.issubset(word[start:end_pos + 1])
-            ) for start in range(n)
+            1 for start in range(n)
+            for end_pos in range(start, n)
+            if set(word[start:end_pos + 1]).issubset(vowels) and vowels.issubset(word[start:end_pos + 1])
         )
