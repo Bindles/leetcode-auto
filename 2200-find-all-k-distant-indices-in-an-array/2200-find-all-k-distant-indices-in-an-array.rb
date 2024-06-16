@@ -1,18 +1,15 @@
-# @param {Integer[]} nums
-# @param {Integer} key
-# @param {Integer} k
-# @return {Integer[]}
 def find_k_distant_indices(nums, key, k)
-  result = []
-  key_indices = nums.filter_map.with_index {|num, i| i if num == key}
+  result_set = Set.new
 
-  key_indices.each do |key_index|
-    start_index = [0, key_index - k].max
-    end_index = [nums.size - 1, key_index + k].min
-    (start_index..end_index).each do |i|
-      result << i unless result.include?(i)
+  nums.each_with_index do |num, i|
+    if num == key
+      start_index = [0, i - k].max
+      end_index = [nums.size - 1, i + k].min
+      (start_index..end_index).each do |j|
+        result_set.add(j)
+      end
     end
   end
 
-  result.sort
+  result_set.to_a.sort
 end
