@@ -5,7 +5,7 @@ def min_number_operations(target)
   result = 0
   
   target.each do |num|
-    result += [num-previous, 0].max
+    result += (num - previous) if num > previous
     previous = num
   end
   result
