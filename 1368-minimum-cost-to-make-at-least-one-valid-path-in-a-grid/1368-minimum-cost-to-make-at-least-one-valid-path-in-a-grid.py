@@ -1,19 +1,36 @@
 class Solution:
     def minCost(self, grid: List[List[int]]) -> int:
-        ROWS, COLS = len(grid), len(grid[0])
-        # (0, 0) just hold position, will not use, others for use of k later
-        directions = [(0, 0), (0, 1), (0, -1), (1, 0), (-1, 0)]         
-        minHeap, visited = [], set()
-        heappush(minHeap, (0, 0, 0))
-        while minHeap:
-            cost, x, y = heappop(minHeap)
-            if (x, y) in visited: continue
-            visited.add((x, y))
-            if x == ROWS - 1 and y == COLS - 1:
-                return cost
-            for k in range(1, 5): # check 4 dirctions
-                row = x + directions[k][0]
-                col = y + directions[k][1]
-                if row < 0 or row >= ROWS or col < 0 or col >= COLS or (row, col) in visited: continue
-                addNum = 0 if k == grid[x][y] else 1 # check whether need cost + 1
-                heappush(minHeap, (cost + addNum, row, col))
+        m = len(grid)
+        n = len(grid[0])
+        queue = [(m-1,n-1)]
+        potential = []
+        cost = 0
+        while True:
+            for x,y in queue:
+                if x == 0 and y == 0:
+                    return cost
+                if grid[x][y] > 0:
+                    grid[x][y] = 0
+                    if x > 0:
+                        if grid[x-1][y] == 3:
+                            queue.append((x-1,y))
+                        elif grid[x-1][y] > 0:
+                            potential.append((x-1,y))
+                    if x < m-1:
+                        if grid[x+1][y] == 4:
+                            queue.append((x+1,y))
+                        elif grid[x+1][y] > 0:
+                            potential.append((x+1,y))
+                    if y > 0:
+                        if grid[x][y-1] == 1:
+                            queue.append((x,y-1))
+                        elif grid[x][y-1] > 0:
+                            potential.append((x,y-1))
+                    if y < n-1:
+                        if grid[x][y+1] == 2:
+                            queue.append((x,y+1))
+                        elif grid[x][y+1] > 0:
+                            potential.append((x,y+1))
+            cost += 1
+            queue = potential
+            potential = []
