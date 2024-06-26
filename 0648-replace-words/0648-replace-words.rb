@@ -2,22 +2,17 @@
 # @param {String} sentence
 # @return {String}
 def replace_words(dictionary, sentence)
-  st = Set.new(dictionary)
-  words = sentence.split(' ')
-  result = []
-
-  words.each do |word|
-    str = ''
-    flag = false
-    word.each_char do |ch|
-      str += ch
-      if st.include?(str)
-        flag = true
+  result = ''
+  dictionary.sort_by!(&:length)
+  sentence.split(' ').each do |word|
+    sub_str = word
+    dictionary.each do |item|
+      if sub_str.start_with?(item)
+        sub_str = item
         break
       end
     end
-    result << (flag ? str : word)
+    result += sub_str + ' '
   end
-
-  result.join(' ')
+  result.strip
 end
