@@ -1,10 +1,6 @@
 class Solution {
 public:
     int minimumOperations(vector<int>& nums) {
-        int count = 0;
-        for (int num : nums) {
-            if (num % 3 != 0) count++;
-        }
-        return count;
+        return count_if(begin(nums), end(nums), [](int n){ return n % 3; });
     }
 };
