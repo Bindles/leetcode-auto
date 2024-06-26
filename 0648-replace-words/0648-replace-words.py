@@ -5,12 +5,11 @@ class Solution:
         words = sentence.split(' ')
 
         for word in words:
-            sub_str = word
             for item in dictionary:
-                if sub_str.startswith(item):
-                    sub_str = item
+                if word.startswith(item):
+                    word = item
                     break
-            result += sub_str + ' '
+            result += word + ' '
 
         return result.strip()
 
