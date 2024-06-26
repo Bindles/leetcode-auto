@@ -1,23 +1,22 @@
 class Solution {
 public:
     string replaceWords(vector<string>& dictionary, string sentence) {
-        set<string> st(dictionary.begin(), dictionary.end());
-        string word, result;
-        stringstream s(sentence);
-        while (s >> word) {
-            string str;
-            bool flag = false;
-            for (char ch : word) {
-                str += ch;
-                if (st.count(str)) {
-                    flag = true;
+        string result;
+        sort(dictionary.begin(), dictionary.end(), [](const string& a, const string& b){
+            return a.size()<b.size();
+        });
+        istringstream iss(sentence);
+        string s;
+        while ( getline( iss, s, ' ' ) ) {
+            string sub_str = s.c_str();
+            for(auto& item: dictionary) {
+                if(item == sub_str.substr(0, item.size())) {
+                    sub_str = item;
                     break;
                 }
             }
-            result += (flag ? str : word);
-            result += " ";
+            result+=sub_str+' ';
         }
-        result.pop_back();
-        return result;
+        return result.substr(0, result.size()-1);
     }
 };
