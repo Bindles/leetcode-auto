@@ -2,11 +2,5 @@
 # @param {String} sentence
 # @return {String}
 def replace_words(dictionary, sentence)
-    words = sentence.split(' ')
-    dictionary.each do |keyword|
-        words.each.with_index do |word, i|
-            words[i] = keyword if word.start_with?(keyword)
-        end
-    end
-    words.join(' ')
+  dictionary.reduce(sentence.split) {|arr,keyword| arr.map {|word| word.start_with?(keyword) ? keyword : word } }.join ' '    
 end
