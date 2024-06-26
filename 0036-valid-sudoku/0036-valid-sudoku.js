@@ -4,9 +4,16 @@
  */
 var isValidSudoku = function(board) {
     // let posArray = new Int16Array(9) // MORE EFFICIENT/WONT WORK
-    //JS CANT ARRAYS OF COORDS LIKE [[x,y]] SIMILAR TO PYTHON.
+    // It does not support the same kind of dynamic array manipulation as regular arrays. Specifically, it cannot store arrays of coordinates like [[x, y]].
+
+    // Python List
+    // Python's list can store any type of object, including lists of coordinates, making it more flexible in this context.
+
+    // You need to use a regular array in JavaScript to hold lists of coordinates. You can initialize it with null values or empty arrays to accommodate dynamic list storage.
+
     let posArray = Array.from({ length: 9 }, () => []);
     
+
     for (let y = 0; y < 9; y++) {
         for (let x = 0; x < 9; x++) {
             let boxId = Math.floor(y / 3) * 3 + Math.floor(x / 3);
