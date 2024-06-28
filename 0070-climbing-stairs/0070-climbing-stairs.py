@@ -2,8 +2,6 @@ class Solution:
     def climbStairs(self, n: int) -> int:
         a = b = 1
         for i in range(n-1):
-            temp = a
-            a = a + b
-            b = temp
+            a, b = (b+a), a
         return a
         
