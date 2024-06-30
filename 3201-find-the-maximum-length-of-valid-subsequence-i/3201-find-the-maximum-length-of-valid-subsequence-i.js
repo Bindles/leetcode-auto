@@ -3,11 +3,14 @@
  * @return {number}
  */
 var maximumLength = function(nums) {
-    const dp = [[0, 0], [0, 0]];
-    nums.forEach(num => {
-        num %= 2;
-        dp[num][0] = 1 + dp[0][num];
-        dp[num][1] = 1 + dp[1][num];
-    });
-    return Math.max(...dp.flat());
+    const parityList = nums.map(num => num % 2);
+    let sumOfOnes = parityList.reduce((a, b) => a + b, 0);
+    let alternatingLength = 1, previousParity = parityList[0];
+    for (let currentParity of parityList.slice(1)) {
+        if (previousParity !== currentParity) {
+            alternatingLength += 1;
+            previousParity = currentParity;
+        }
+    }
+    return Math.max(sumOfOnes, parityList.length - sumOfOnes, alternatingLength);
 };
