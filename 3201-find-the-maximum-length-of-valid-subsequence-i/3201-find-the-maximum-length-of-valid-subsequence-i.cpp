@@ -1,18 +1,13 @@
 class Solution {
 public:
     int maximumLength(vector<int>& nums) {
-        vector<int> parityList;
+        vector<vector<int>> dp(2, vector<int>(2, 0));
         for (int num : nums) {
-            parityList.push_back(num % 2);
+            num %= 2;
+            dp[num][0] = 1 + dp[0][num];
+            dp[num][1] = 1 + dp[1][num];
         }
-        int sumOfOnes = accumulate(parityList.begin(), parityList.end(), 0);
-        int alternatingLength = 1, previousParity = parityList[0];
-        for (size_t i = 1; i < parityList.size(); ++i) {
-            if (previousParity != parityList[i]) {
-                alternatingLength += 1;
-                previousParity = parityList[i];
-            }
-        }
-        return max({sumOfOnes, (int)parityList.size() - sumOfOnes, alternatingLength});
+
+        return max(max(dp[0][0], dp[0][1]), max(dp[1][0], dp[1][1]));
     }
 };
