@@ -1,11 +1,16 @@
 # @param {Integer[]} nums
 # @return {Integer}
 def maximum_length(nums)
-    dp = [[0,0],[0,0]]
-    for num in nums
-        num %=2
-        dp[num][0] = 1 + dp[0][num]
-        dp[num][1] = 1 + dp[1][num]
+    parity_list = nums.map { |num| num % 2 }
+    ones_sum = parity_list.sum
+    alternating_length = 1
+    prev = parity_list[0]
+    
+    parity_list[1..-1].each do |num|
+        if prev != num
+            alternating_length += 1
+            prev = num
+        end
     end
-    dp.flatten.max
+    [ones_sum, parity_list.size - ones_sum, alternating_length].max
 end
