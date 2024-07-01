@@ -5,9 +5,7 @@ def min_operations(logs)
     for log in logs
         if log == '../'
             curFol-=1  if curFol != 0
-        elsif log == './'
-            # do nothing
-        else
+        elsif log != './'
             curFol+=1
         end
     end
