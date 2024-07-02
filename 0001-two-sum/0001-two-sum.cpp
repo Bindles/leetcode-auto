@@ -1,13 +1,13 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        for (int i = 1; i < nums.size(); i++) {
-            for (int j = i; j < nums.size(); j++) {
-                if (nums[j] + nums[j - i] == target) {
-                    return{ j - i, j };
-                }
+    for (int i=0;i<nums.size()-1; i++){
+        for (int j = i+1; j<nums.size(); j++) {
+            if (nums[j] + nums[i] == target) {
+                return {i, j};
             }
         }
-        return { -1, -1 };
     }
+    return {};
+    };
 };
