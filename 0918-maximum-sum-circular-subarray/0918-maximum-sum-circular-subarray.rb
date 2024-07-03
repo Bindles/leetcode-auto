@@ -1,15 +1,10 @@
 # @param {Integer[]} nums
 # @return {Integer}
 def max_subarray_sum_circular(nums)
-  numzero= nums[0]
-  max_sum = numzero
-  min_sum = numzero
-  curr_max = numzero
-  curr_min = numzero
-  total_sum = numzero
+  max_sum = min_sum = curr_max = curr_min = total_sum = nums[0]
+
   (1...nums.length).each do |i|
       num = nums[i]
-      
       curr_max = [num, (curr_max + num)].max
       max_sum = [max_sum, curr_max].max
 
