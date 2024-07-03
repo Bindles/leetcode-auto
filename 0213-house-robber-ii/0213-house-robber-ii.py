@@ -5,8 +5,7 @@ class Solution:
     def helper(self, nums):
         rob1 = rob2 = 0
         for num in nums:
-            temp = max(num + rob1, rob2)
-            rob1 = rob2
-            rob2 = temp
+            rob1, rob2 = rob2, max(num + rob1, rob2)
+
         return rob2
         
