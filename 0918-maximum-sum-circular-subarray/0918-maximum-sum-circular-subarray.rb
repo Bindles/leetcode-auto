@@ -1,22 +1,22 @@
 # @param {Integer[]} nums
 # @return {Integer}
 def max_subarray_sum_circular(nums)
-  sum = 0
-  min_sum = Float::INFINITY
-  max_sum = -Float::INFINITY
-  
-  curr_min = 0
-  curr_max = 0
-  
-  nums.each_index do |i|
-    curr_min = [nums[i] + curr_min, nums[i]].min
-    min_sum = [min_sum, curr_min].min
-    
-    curr_max = [nums[i] + curr_max, nums[i]].max
-    max_sum = [max_sum, curr_max].max
-    
-    sum += nums[i]
+  numzero= nums[0]
+  max_sum = numzero
+  min_sum = numzero
+  curr_max = numzero
+  curr_min = numzero
+  total_sum = numzero
+  (1...nums.length).each do |i|
+      num = nums[i]
+      
+      curr_max = [num, (curr_max + num)].max
+      max_sum = [max_sum, curr_max].max
+
+      curr_min = [num, (curr_min + num)].min
+      min_sum = [min_sum, curr_min].min
+
+      total_sum += num
   end
-  
-  max_sum > 0 ? [sum - min_sum, max_sum].max : max_sum
+  max_sum < 0 ? max_sum : [max_sum, total_sum - min_sum].max
 end
