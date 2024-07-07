@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
         int n = temperatures.size();
-        vector<int> answer(n, 0);  // Initialize the result array with 0s
+        vector<int> result(n, 0);  // Initialize the result array with 0s
         stack<int> stack;  // Stack to store indices of the temperatures
 
         for (int i = 0; i < n; ++i) {
@@ -10,11 +10,11 @@ public:
             while (!stack.empty() && temperatures[i] > temperatures[stack.top()]) {
                 int last = stack.top();  // Get the index from the top of the stack
                 stack.pop();  // Pop the index from the stack
-                answer[last] = i - last;  // Calculate the number of days and update the result array
+                result[last] = i - last;  // Calculate the number of days and update the result array
             }
             stack.push(i);  // Push the current index onto the stack
         }
 
-        return answer;
+        return result;
     }
 };
