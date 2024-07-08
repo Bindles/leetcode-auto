@@ -7,7 +7,7 @@ def pass_the_pillow(n, time)
     time_left = time % (n-1) #time rem after compl rounds
     #0=>forward|1=>backward|2=>forward|3=>backward
     if rounds_completed.even? # direction?(even=forward)
-        return time+1
+        return time_left+1
     else
         return n - time_left
     end
