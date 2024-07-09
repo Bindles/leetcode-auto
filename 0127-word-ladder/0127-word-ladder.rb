@@ -3,22 +3,36 @@
 # @param {String[]} word_list
 # @return {Integer}
 def ladder_length(begin_word, end_word, word_list)
-  word_set = Set.new(word_list)
-  queue = [begin_word]
-  steps = 0
-  until queue.empty?
-    steps += 1
-    queue.size.times do
-      current_word = queue.shift
-      return steps if current_word == end_word
-      ('a'..'z').to_a.product((0...current_word.size).to_a).each do |char, index|
-        new_word = current_word.dup.tap { |str| str[index] = char }
-        if word_set.include?(new_word)
-          queue << new_word
-          word_set.delete(new_word)
-        end
-      end
+  graph = Hash.new { |hash, key| hash[key] = [] }
+
+  word_list.each do |word|
+    (0...begin_word.length).each do |i|
+      graph[word[0...i] + '*' + word[i+1..-1]] << word
     end
   end
-  0
+
+  queue = [[begin_word, 1]]
+  visited = { begin_word => true }
+
+  while !queue.empty?
+    cur, level = queue.shift
+    (0...begin_word.length).each do |i|
+      inter = cur[0...i] + '*' + cur[i+1..-1]
+
+      graph[inter].each do |word|
+        if word == end_word
+          return level + 1
+        end
+
+        if !visited[word]
+          visited[word] = true
+          queue << [word, level + 1]
+        end
+      end
+
+      graph[inter] = []
+    end
+  end
+
+  return 0
 end
