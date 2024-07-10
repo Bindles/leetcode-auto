@@ -2,15 +2,16 @@
 # @param {Character} target
 # @return {Character}
 def next_greatest_letter(letters, target)
-    low = 0
-    high = letters.size-1
-    while(low <= high)
+    return letters[0] if target >= letters.last
+    low, high = 0, letters.size-1
+    
+    while low < high
         mid = (low + high) / 2
-        if(letters[mid] > target)
-          high = mid - 1
+        if letters[mid] <= target
+            low = mid + 1 
         else
-          low = mid + 1
+            high = mid
         end
     end
-    return letters[low % letters.size]
+    letters[low]
 end
