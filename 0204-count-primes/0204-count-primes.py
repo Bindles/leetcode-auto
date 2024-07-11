@@ -1,15 +1,10 @@
 class Solution:
     def countPrimes(self, n: int) -> int:
-        if n<3: return 0
-        #initialize a list of length n
-        prime=[1]*n
-		#mark 0th  and 1st index as 0
-        prime[0]=prime[1]=0
+        if n < 3: return 0
+        primeList = [1] * (n//2)
         
-		#we will check for multiple from range 2 to sqrt(n)
-        for i in range(2,int(sqrt(n))+1):
-            if prime[i] == 1:
-			#mark all multiple of prime number as  0
-                prime[i*i:n:i] = [0] * ((n-1-i*i)//i + 1)
-    #return total count of prime 
-        return sum(prime)
+        for i in range(3, int(n**0.5) + 1, 2):
+            if primeList[i//2]:
+                primeList[(i*i)//2::i] = [0] * len(primeList[(i*i)//2::i])
+                
+        return sum(primeList)
