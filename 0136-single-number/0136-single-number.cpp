@@ -1,11 +1,15 @@
-int init=[] {ios_base::sync_with_stdio(false);cin.tie(0);return 0;}();
+//int init=[] {ios_base::sync_with_stdio(false);cin.tie(0);return 0;}();
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        int res = 0;
+        std::unordered_map<int, int> tally;
         for(int num : nums) {
-            res ^= num;
+            tally[num]++;
         }
-        return res;
+        for (const auto& pair : tally) {
+            std::cout << "Key: " << pair.first << ", Value: " << pair.second << std::endl;
+            if (pair.second < 2) return pair.first ;
+        }
+        return -1; // should never reach here
     }
 };
