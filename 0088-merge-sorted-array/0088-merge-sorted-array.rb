@@ -4,23 +4,17 @@
 # @param {Integer} n
 # @return {Void} Do not return anything, modify nums1 in-place instead.
 def merge(nums1, m, nums2, n)
-  # remove extraneous trailing zeros   
-  while m < nums1.size && nums1.last.zero?
-    nums1.pop
-  end
-
-  # insert based on order
-  i = 0
-  while i < nums1.length && !nums2.empty?
-    if nums1[i] >= nums2[0]
-      nums1.insert(i, nums2[0])
-      nums2.shift
+  i=m-1
+  j=n-1
+  last = m+n-1
+  while  j >= 0 do 
+    if i>=0 && nums1[i] > nums2[j]
+        nums1[last] = nums1[i]
+        i =  i-1
+    else
+        nums1[last] = nums2[j]
+        j = j-1
     end
-    i += 1
-  end
-
-  # append any remainder
-  until nums2.empty?
-    nums1.push(nums2.shift)
+    last = last -1
   end
 end
