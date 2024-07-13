@@ -1,9 +1,19 @@
+
 # @param {String} s
 # @return {String}
 def remove_stars(s)
-  i = 0;
-  s.each_char do |c|
-      c != '*' ? (s[i] = c;i+=1) : (i-=1);
+  res = []
+  number_of_stars = 0
+
+  s.reverse.each_char do |c|
+    if c == '*'
+      number_of_stars += 1
+    elsif number_of_stars > 0
+      number_of_stars -= 1
+    else
+      res.push(c)
+    end
   end
-  s[0...i]
+
+  res.reverse.join
 end
