@@ -1,13 +1,18 @@
 impl Solution {
     pub fn remove_stars(s: String) -> String {
-        let mut stack: Vec<char> = Vec::new();
-        for c in s.chars() {
+        let mut res = String::new();
+        let mut number_of_stars = 0;
+
+        for c in s.chars().rev() {
             if c == '*' {
-                stack.pop();
+                number_of_stars += 1;
+            } else if number_of_stars > 0 {
+                number_of_stars -= 1;
             } else {
-                stack.push(c);
+                res.push(c);
             }
         }
-        stack.into_iter().collect()
+
+        res.chars().rev().collect()
     }
 }
