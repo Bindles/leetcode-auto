@@ -2,9 +2,5 @@
 # @return {Integer}
 def equal_pairs(grid)
   c = grid.transpose
-  (0...grid.size).sum do |i|
-    (0...grid.size).count do |j|
-      grid[i] == c[j]
-    end
-  end
+  (0...grid.size).sum {|i| (0...grid.size).count {|j|grid[i] == c[j] } }
 end
