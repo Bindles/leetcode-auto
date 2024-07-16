@@ -1,3 +1,4 @@
+int init=[] {ios_base::sync_with_stdio(false);cin.tie(0);return 0;}();
 class Solution {
 public:
     bool checkAlmostEquivalent(string word1, string word2) {
