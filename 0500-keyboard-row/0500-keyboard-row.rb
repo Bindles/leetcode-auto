@@ -1,12 +1,6 @@
 # @param {String[]} words
 # @return {String[]}
 def find_words(words)
-    a="qwertyuiop"
-    b="asdfghjkl"
-    c="zxcvbnm"
-    
-    words.select do |word|
-        word_chars = word.downcase.chars
-        word_chars.all?{|chr| a.include?(chr)} || word_chars.all?{|chr| b.include?(chr)} || word_chars.all?{|chr| c.include?(chr)}
-    end  
+  rows = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
+  words.select {|word| rows.count {|row| word.downcase.chars.all? { |c| row.include?(c) } } == 1 }
 end
