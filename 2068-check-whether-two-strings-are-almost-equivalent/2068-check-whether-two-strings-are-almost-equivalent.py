@@ -3,11 +3,7 @@ class Solution:
         charCounts = defaultdict(int)
         for c in word1: charCounts[c]+=1
         for c in word2: charCounts[c]-=1
-
-        for v in charCounts.values():
-            if abs(v) > 3:
-                return False
-        return True
+        return all( abs(val) <= 3 for val in charCounts.values() )
 
 
 
