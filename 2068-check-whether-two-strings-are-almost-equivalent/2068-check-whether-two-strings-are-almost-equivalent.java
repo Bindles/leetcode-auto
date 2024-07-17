@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 class Solution {
     public boolean checkAlmostEquivalent(String word1, String word2) {
         Map<Character, Integer> charCount = new HashMap<>();
