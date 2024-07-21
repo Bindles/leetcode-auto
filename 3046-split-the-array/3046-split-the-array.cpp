@@ -1,18 +1,13 @@
 class Solution {
 public:
     bool isPossibleToSplit(vector<int>& nums) {
-       unordered_map<int,int> nums_counts;
-       for (int num : nums) nums_counts[num]++;
+        unordered_map<int, int> nums_counts;
+        for (int num : nums) nums_counts[num]++;
 
-       for (const auto& pair : nums_counts) {
-        cout << pair.second << endl;
-        if (pair.second > 2) {
-            return false;
-        }
-       }
-       return true;
+        return all_of(nums_counts.begin(), nums_counts.end(), [](const auto& pair) {
+            return pair.second <= 2;
+        });
     }
 };
-
 
 
