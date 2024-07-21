@@ -3,10 +3,11 @@
 # @return {String}
 def digit_sum(s, k)
     until s.size <= k
-        s.chars.each_slice(k).with_index do |slice, i|
-            s.clear if i == 0
-            s += (slice.map(&:to_i).sum).to_s
+        res=''
+        s.chars.each_slice(k) do |slice|
+            res += (slice.map(&:to_i).sum).to_s
         end
+        s=res
     end
     s
 end
