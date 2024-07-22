@@ -3,7 +3,7 @@ class Solution:
         count=0     
         nums = str(num)
         for i in range(len(nums)-(k-1)):
-            window = int(''.join(nums[i:k+i]))
+            window = int(nums[i:k+i])
             if window != 0 and (num % window) == 0:
                 count+=1
 
