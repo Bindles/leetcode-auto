@@ -5,7 +5,7 @@ def are_almost_equal(s1, s2)
     return false unless s1 == s2.reverse if s1.size <= 2
     stack=[]
     swap=false
-
+    count=0
     a = s1.each_char.with_index.to_a.map { |char, index| [index, char] }.to_h
     b = s2.each_char.with_index.to_a.map { |char, index| [index, char] }.to_h
 
@@ -16,9 +16,11 @@ def are_almost_equal(s1, s2)
         end
         if stack.empty?
             stack << [a[ind], b[ind]]
+            count+=1
         elsif swap == false
             if stack.flatten == [a[ind], b[ind]].reverse
                 swap=true
+                count+=1
             else
                 return false
             end
@@ -26,5 +28,5 @@ def are_almost_equal(s1, s2)
             return false
         end
     end
-   return true
+   count != 1 ? true : false
 end
