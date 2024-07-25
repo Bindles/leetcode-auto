@@ -9,8 +9,8 @@ public:
             char maxdigit = *max_element(numstr.begin(), numstr.end());
             cout << maxdigit << endl;
             
-            string numstrz(numstr.size(), maxdigit);
-            res += stoi(numstrz);
+            fill(numstr.begin(), numstr.end(), maxdigit);
+            res += stoi(numstr);
         }
         return res;
     }
