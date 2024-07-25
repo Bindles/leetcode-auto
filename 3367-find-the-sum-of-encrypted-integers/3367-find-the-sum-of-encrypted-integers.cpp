@@ -1,17 +1,10 @@
 class Solution {
 public:
     int sumOfEncryptedInt(vector<int>& nums) {
-        int res=0;
-        for (int num : nums) {
-            string numstr = to_string(num);          
-            cout << numstr << endl;
-
-            char maxdigit = *max_element(numstr.begin(), numstr.end());
-            cout << maxdigit << endl;
-            
-            fill(numstr.begin(), numstr.end(), maxdigit);
-            res += stoi(numstr);
-        }
-        return res;
+        return accumulate(nums.begin(), nums.end(), 0, [](int acc, int num) {
+            string s = to_string(num);
+            char max_digit = *max_element(s.begin(), s.end());
+            return acc + stoi(string(s.size(), max_digit));
+        });
     }
 };
