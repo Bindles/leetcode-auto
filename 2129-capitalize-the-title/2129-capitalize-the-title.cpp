@@ -2,16 +2,16 @@ class Solution {
 public:
     std::string capitalizeTitle(std::string title) {
         std::istringstream iss(title);
-        std::vector<std::string> words;
         std::string word, result;
+        std::vector<std::string> words;
 
         // Split the title into words
         while (iss >> word) {
             words.push_back(word);
         }
 
-        // Process each word
-        std::transform(words.begin(), words.end(), words.begin(), [](std::string& w) {
+        // Use std::transform to modify words in place
+        std::transform(words.begin(), words.end(), words.begin(), [](std::string w) {
             if (w.size() <= 2) {
                 std::transform(w.begin(), w.end(), w.begin(), ::tolower);
             } else {
@@ -22,13 +22,8 @@ public:
         });
 
         // Join the words back into a single string
-        for (size_t i = 0; i < words.size(); ++i) {
-            result += words[i];
-            if (i != words.size() - 1) {
-                result += " ";
-            }
-        }
-
-        return result;
+        return std::accumulate(words.begin(), words.end(), std::string(), [](const std::string &a, const std::string &b) {
+            return a.empty() ? b : a + " " + b;
+        });
     }
 };
