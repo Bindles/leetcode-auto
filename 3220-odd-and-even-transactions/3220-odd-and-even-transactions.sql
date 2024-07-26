@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+SELECT transaction_date, sum((amount&1)*amount) AS odd_sum, sum(((amount+1)&1)*amount) AS even_sum FROM transactions GROUP BY transaction_date ORDER BY transaction_date;
