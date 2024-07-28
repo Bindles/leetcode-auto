@@ -1,8 +1,9 @@
-int init=[] {ios_base::sync_with_stdio(false);cin.tie(0);return 0;}();
+#define FIO ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 class Solution {
 public:
     int distributeCandies(vector<int>& candyType) {
-        unordered_set<int> uniq_candies(candyType.begin(), candyType.end());
-        return min(candyType.size() / 2, uniq_candies.size());
+        bitset<200001>bits;        
+        for(auto i : candyType)bits.set(i+100000);
+        return min(candyType.size()/2,bits.count());        
     }
 };
