@@ -1,4 +1,4 @@
-#define FIO ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+int init=[]{std::ios_base::sync_with_stdio(false);std::cin.tie(nullptr);std::cout.tie(nullptr);return 0;}();
 class Solution {
 public:
     int distributeCandies(vector<int>& candyType) {
