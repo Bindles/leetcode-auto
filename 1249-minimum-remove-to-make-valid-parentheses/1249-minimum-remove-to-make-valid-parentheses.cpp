@@ -23,7 +23,12 @@ public:
         for (const auto& elem : stack) {
             stack_joined += elem;
         }
-        
-        return stack_joined + result;
+        // Concatenate all remaining parts in the stack
+        while (!stack.empty()) {
+            result = stack.back() + result;
+            stack.pop_back();
+        }
+
+        return result;
     }
 };
