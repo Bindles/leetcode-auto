@@ -18,11 +18,6 @@ public:
                 result += chr;
             }
         }
-        
-        string stack_joined;
-        for (const auto& elem : stack) {
-            stack_joined += elem;
-        }
         // Concatenate all remaining parts in the stack
         while (!stack.empty()) {
             result = stack.back() + result;
