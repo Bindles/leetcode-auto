@@ -3,9 +3,10 @@
 # @param {Integer} start
 # @return {Integer}
 def get_min_distance(nums, target, start)
-    res=Float::INFINITY
+    res=[]
     nums.each_index do |i|
-        res = [res,(i - start).abs].min if nums[i] == target
+        p "#{(i - start).abs} | #{nums[i] == target}"
+        res << (i - start).abs if nums[i] == target
     end
-    res
+    res.min
 end
