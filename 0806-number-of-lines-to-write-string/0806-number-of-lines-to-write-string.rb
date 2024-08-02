@@ -2,16 +2,19 @@
 # @param {String} s
 # @return {Integer[]}
 def number_of_lines(widths, s)
-   lines = 1
-   width = 0
-   s.chars.each do |c|
-    char_width = widths[c.ord - 'a'.ord]
-    if width + char_width > 100
-        lines += 1
-        width = char_width
+  costs = ('a'..'z').to_a.zip(widths).to_h
+  lines = 1
+  width = 0
+  
+  s.each_char do |chr|
+    current = width + costs[chr]
+    if current > 100
+      lines += 1
+      width = costs[chr]
     else
-        width += char_width
+      width = current
     end
-   end 
-   [lines, width]
+  end
+  
+  [lines, width]
 end
