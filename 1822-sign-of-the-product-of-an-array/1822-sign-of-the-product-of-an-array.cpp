@@ -1,9 +1,13 @@
+int init=[]{ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);return 0;}();
 class Solution {
 public:
-    int arraySign(vector<int>& nums) {
-        int product = accumulate(nums.begin(), nums.end(), 1, multiplies<size_t>());
-        if (product > 0) return 1;
-        else if (product == 0) return 0;
-        else return -1;
+    int arraySign(std::vector<int>& nums) {
+        int negativeCount = 0;
+        
+        for (int num : nums) {
+            if (num == 0) return 0;
+            else if (num < 0) negativeCount++;
+        }
+        return (negativeCount % 2 == 0) ? 1 : -1;
     }
 };
