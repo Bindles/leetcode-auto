@@ -1,12 +1,12 @@
+use std::collections::HashSet;
 impl Solution {
     pub fn min_operations(mut nums: Vec<i32>, k: i32) -> i32 {
         let mut count = 0;
-        let mut res = Vec::new();
-        let range: Vec<i32> = (1..=k).collect();
+        let mut rng: HashSet<i32> = (1..=k).collect();
 
-        while !range.iter().all(|&x| res.contains(&x)) {
+        while !rng.is_empty() {
             if let Some(val) = nums.pop() {
-                res.push(val);
+                rng.remove(&val);
                 count += 1;
             }
         }
