@@ -3,17 +3,17 @@ class Solution {
 public:
     int minOperations(vector<int>& nums, int k) {
         int count = 0;
-        vector<int> res;
-        vector<int> range(k);
-        iota(range.begin(), range.end(), 1);
+        unordered_set<int> rng;
+        for (int i=1; i<=k; ++i) rng.insert(i);
 
-        while (all_of(range.begin(), range.end(), [&res](int x) { 
-            return find(res.begin(), res.end(), x) != res.end(); 
-        }) == false) {
-            res.push_back(nums.back());
+        while (!rng.empty()) {
+            int num = nums.back();
             nums.pop_back();
+            rng.erase(num);
             count++;
         }
         return count;
     }
 };
+
+
