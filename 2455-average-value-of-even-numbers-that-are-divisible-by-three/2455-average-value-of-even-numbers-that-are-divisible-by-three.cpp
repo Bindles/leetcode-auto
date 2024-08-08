@@ -4,7 +4,7 @@ public:
     int averageValue(vector<int>& nums) {
         vector<int> s_nums;
         copy_if(nums.begin(), nums.end(), back_inserter(s_nums), [](int num) {
-            return num % 2 == 0 && num % 3 == 0;
+            return num % 6 == 0;
         });
         int sumx = accumulate(s_nums.begin(), s_nums.end(), 0);
         return s_nums.empty() ? 0 : sumx / s_nums.size();
