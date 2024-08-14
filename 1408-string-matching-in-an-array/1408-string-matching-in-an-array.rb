@@ -1,5 +1,8 @@
 # @param {String[]} words
 # @return {String[]}
 def string_matching(words)
-  words.select{|w| words.any?{|word| word != w and word.include?(w)}}
+  w = words.sort_by(&:size)
+  w.each_with_object([]) do |word, result|
+    result.push(word) if w.any? {|x| x != word && x.include?(word) }
+  end
 end
