@@ -4,7 +4,7 @@ public:
         // Generate Fibonacci numbers up to k
         vector<int> fibs = {1, 1};
         while (fibs.back() <= k) {
-            fibs.emplace_back(fibs.back() + fibs[fibs.size() - 2]);
+            fibs.push_back(fibs.back() + fibs[fibs.size() - 2]);
         }
         
         int count = 0;
