@@ -1,34 +1,26 @@
 # @param {Integer[]} target
 # @return {Boolean}
 def is_possible(target)
-  # Convert target elements to integers
-  target.map!(&:to_i)
-
-  # Calculate the total sum of the target array
+  target = target.map(&:to_i) # Ensure all elements are integers
   sum = target.sum
 
-  # Use a max-heap to always work with the largest element
-  max_heap = target.sort.reverse
-  heap = []
-  max_heap.each { |num| heap.push(-num) } # Negative because Ruby's heap is a min-heap
-
-  while heap.first < -1
-    max = -heap.shift # Pop the largest element (note: negating back to positive)
+  # Continue until the largest element is 1 or less
+  while target.max > 1
+    max = target.max
     rest_sum = sum - max
 
-    # Check if the rest_sum can be used to form the target
+    # If the rest of the sum is less than or equal to 0 or not less than the maximum value, it's not possible
     return false if rest_sum <= 0 || rest_sum >= max
 
-    # Calculate the new value to replace the largest element
+    # Calculate the new value to be used to replace the maximum
     new_val = max % rest_sum
 
-    # Update the sum and heap
+    # Update the sum and target array
     sum = rest_sum + new_val
     return false if new_val == 0 && rest_sum > 1
 
-    # Push the new value into the heap
-    heap.push(-new_val)
-    heap.sort!
+    # Replace the maximum value in the target array with the new value
+    target[target.index(max)] = new_val
   end
 
   true
