@@ -5,11 +5,7 @@
 def divide_string(s, k, fill)
     res=[]
     s.chars.each_slice(k) do |slice|
-        if slice.size == k
-            res << slice.join
-        else
-            res << slice.join + fill * (k - slice.size)
-        end
+        res << slice.join.ljust(k, fill)
     end
     res
 end
