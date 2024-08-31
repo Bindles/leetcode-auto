@@ -3,18 +3,37 @@
 # @param {Integer} n
 # @return {Integer}
 def find_max_form(strs, m, n)
-  dp = (m + 1).times.map{[0]*(n + 1)}
-  
-  strs.each do |str|
-    zeros = str.count('0')
-    ones = str.count('1')
-    
-    m.downto(zeros) do |i|
-      n.downto(ones) do |j|
-        dp[i][j] = [dp[i][j], dp[i - zeros][j - ones] + 1].max
-      end
+    Solver.new(strs, m, n).solve
+end
+
+class Solver
+    def initialize(strs, m, n)
+        @strs = strs
+        @m = m
+        @n = n
+        @ns = strs.map { |s| [ s.count('0'), s.count('1') ] }.tally.to_a.map(&:flatten)
+        @best = 0
     end
-  end
-  
-  dp[m][n]
+
+    def solve
+        aux(0, @m, @n, 0, @strs.size)
+        @best
+    end
+
+    def aux(index, m, n, acc, left)
+        return false if m < 0 or n < 0
+        if index == @ns.size
+            @best = acc if acc > @best
+            return true
+        end
+        return true if acc + left < @best
+
+        a, b, k = @ns[index]
+
+        (0..k).map do |i|
+            return true if !aux(index + 1, m - i * a, n - i * b, acc + i, left - k)
+        end
+
+        true
+    end
 end
