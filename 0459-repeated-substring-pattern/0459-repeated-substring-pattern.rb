@@ -5,9 +5,7 @@ def repeated_substring_pattern(s)
         if s.size % i == 0
             q = s.size / i
             s2 = s[0...i] * q
-            if s2 == s
-                return true
-            end
+            return true if s2 == s
         end
     end
     false
