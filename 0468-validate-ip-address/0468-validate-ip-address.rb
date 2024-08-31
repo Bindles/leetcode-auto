@@ -1,9 +1,9 @@
 # @param {String} query_ip
 # @return {String}
 def valid_ip_address(queryIP)
-  if queryIP.count('.') == 3 && queryIP.split('.').all? { |block| valid_ipv4_block?(block) }
+  if queryIP.count('.') == 3 && queryIP.split('.').size == 4 && queryIP.split('.').all? { |block| valid_ipv4_block?(block) }
     return "IPv4"
-  elsif queryIP.count(':') == 7 && queryIP.split(':').all? { |block| valid_ipv6_block?(block) }
+  elsif queryIP.count(':') == 7 && queryIP.split(':').size == 8 && queryIP.split(':').all? { |block| valid_ipv6_block?(block) }
     return "IPv6"
   else
     return "Neither"
