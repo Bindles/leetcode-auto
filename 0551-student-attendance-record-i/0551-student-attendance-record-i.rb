@@ -6,7 +6,6 @@ def check_record(s)
         case s[i]
         when "A"
             absences+=1
-            consec_late=0
         when "L"
             s[i-1] == 'L' || nil ? consec_late += 1 : consec_late = 1
             max_late = [max_late, consec_late].max         
@@ -16,5 +15,4 @@ def check_record(s)
     p absences
     p max_late
     absences < 2 && max_late < 3 ? true : false
-
 end
