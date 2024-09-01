@@ -7,7 +7,7 @@ def check_record(s)
         when "A"
             absences+=1
         when "L"
-            s[i-1] == 'L' || nil ? consec_late += 1 : consec_late = 1
+            s[i-1] == 'L' ? consec_late += 1 : consec_late = 1
             max_late = [max_late, consec_late].max         
         end
     end
