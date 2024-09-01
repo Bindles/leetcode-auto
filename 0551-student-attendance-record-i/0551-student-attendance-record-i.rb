@@ -1,15 +1,21 @@
 # @param {String} s
 # @return {Boolean}
 def check_record(s)
-    absences = consec_late = max_late = 0
-    s.chars.each_index do |i|
-        case s[i]
-        when "A"
-            absences+=1
-        when "L"
-            s[i-1] == 'L' ? consec_late += 1 : consec_late = 1
-            max_late = [max_late, consec_late].max         
-        end
+  absences = consec_late = 0
+
+  s.each_char do |char|
+    case char
+    when "A"
+      absences += 1
+      return false if absences == 2
+      consec_late = 0
+    when "L"
+      consec_late += 1
+      return false if consec_late == 3
+    else
+      consec_late = 0
     end
-    absences < 2 && max_late < 3 ? true : false
+  end
+
+  true
 end
