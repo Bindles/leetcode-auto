@@ -3,9 +3,5 @@
 # @return {Integer}
 def chalk_replacer(chalk, k)
   k %= chalk.sum # Remaining chalk after k full rounds
-
-  chalk.each_index do |i|
-    return i if k < chalk[i]
-    k-=chalk[i]
-  end
+  chalk.find_index{|c| (k -= c) < 0 }
 end
