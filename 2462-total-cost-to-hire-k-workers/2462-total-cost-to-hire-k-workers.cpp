@@ -6,7 +6,7 @@ struct Compare {
 
 class Solution {
 public:
-    int totalCost(vector<int>& costs, int k, int candidates) {
+    long long totalCost(vector<int>& costs, int k, int candidates) {
         priority_queue<pair<int, int>, vector<pair<int, int>>, Compare> pq;
         int left = 0, right = costs.size() - 1;
 
@@ -19,7 +19,7 @@ public:
             }
         }
 
-        int total_cost = 0;
+        long long total_cost = 0;
 
         while (k > 0) {
             auto [index, cost] = pq.top();
