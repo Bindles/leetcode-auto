@@ -2,25 +2,24 @@
 # @param {Integer[]} quantities
 # @return {Integer}
 def minimized_maximum(n, quantities)
-  low = 0                # Lower bound: minimum possible maximum group size
   high = quantities.max  # Upper bound: highest quantity in the array
+  low = 0                # Lower bound: minimum possible maximum group size
 
-  # Perform binary search to find the minimum possible maximum group size
   while (high - low).abs > 1
-    mid = (high + low) / 2  # Middle value in current range
+    mid = (high + low) / 2
 
-    # Check if we can distribute items into `n` or fewer groups with a max size of `mid`
-    total_groups = quantities.sum { |q| (q + mid - 1) / mid }
+    # Manually calculate total_groups
+    total_groups = 0
+    quantities.each do |q|
+      total_groups += (q + mid - 1) / mid  # Equivalent to rounding up q / mid
+    end
 
     if total_groups <= n
-      # If `mid` is a feasible maximum group size, try for a smaller max size
-      high = mid
+      high = mid  # mid is a feasible maximum group size, try for a smaller max size
     else
-      # If `mid` is too small, we need to allow a larger max size
-      low = mid
+      low = mid   # mid is too small, we need a larger max size
     end
   end
 
-  # `high` is the smallest possible maximum group size that allows `n` or fewer groups
-  high
+  high  # Return the minimized maximum value
 end
