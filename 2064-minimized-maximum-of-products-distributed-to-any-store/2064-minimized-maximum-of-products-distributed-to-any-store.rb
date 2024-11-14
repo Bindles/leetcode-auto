@@ -5,7 +5,7 @@ def minimized_maximum(n, quantities)
   high = quantities.max  # Upper bound: highest quantity in the array
   low = 0                # Lower bound: minimum possible maximum group size
 
-  while (high - low).abs > 1
+  while (high - low) > 1  #remove .abs
     mid = (high + low) / 2
 
     # Manually calculate total_groups
