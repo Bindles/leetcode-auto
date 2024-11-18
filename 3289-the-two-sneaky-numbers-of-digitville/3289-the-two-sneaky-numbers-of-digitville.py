@@ -1,12 +1,7 @@
 class Solution:
     def getSneakyNumbers(self, nums: List[int]) -> List[int]:
         tal = Counter(nums)
-        res = []
-        for k,v in tal.items():
-            if v > 1:
-                res.append(k)
-
-        return res
+        return [key_num for key_num,value_count in tal.items() if value_count > 1]
 
        
 
