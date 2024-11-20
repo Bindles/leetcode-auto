@@ -1,5 +1,20 @@
 impl Solution {
     pub fn reverse_string(s: &mut Vec<char>) {
-        return s.reverse()
+        let mut left = 0;
+        let mut right = 
+        if s.len() > 0 {
+            s.len() - 1
+        } else {
+            0
+        };
+
+        while left < right {
+            let temp = s[left];
+            s[left] = s[right];
+            s[right] = temp;
+
+            left+=1;
+            right-=1;
+        }
     }
 }
