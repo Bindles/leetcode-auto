@@ -2,7 +2,6 @@ def take_characters(s, k)
   # Create a hash with counts of each character ('a', 'b', 'c') minus k
   required_counts = Hash.new(0)
   %w[a b c].each { |c| required_counts[c] = s.count(c) - k }
-  p required_counts
 
   # Return -1 if any character does not meet the required minimum count
   return -1 if required_counts.values.min < 0
