@@ -1,11 +1,10 @@
 # @param {Integer[]} prices
 # @return {Integer}
 def max_profit(prices)
-  result = 0
-  lowest = prices[0]
-  prices.each do |price|
-    lowest = [lowest, price].min
-    result = [result, price - lowest].max
+  max_profit = 0
+  left = 0
+  for right in 1...prices.size
+    prices[left] > prices[right] ? left = right : max_profit = [max_profit, prices[right] - prices[left]].max  
   end
-  result
+  max_profit
 end
