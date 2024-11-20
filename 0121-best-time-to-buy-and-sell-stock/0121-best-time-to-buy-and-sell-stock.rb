@@ -1,14 +1,11 @@
 # @param {Integer[]} prices
 # @return {Integer}
 def max_profit(prices)
-  return 0 if prices.empty?
-  minprice = prices[0]
-  maxp = 0
-
-  for price in prices do
-    minprice = [minprice, price].min
-    profit = price - minprice
-    maxp = [maxp, profit].max
+  result = 0
+  lowest = prices[0]
+  prices.each do |price|
+    lowest = [lowest, price].min
+    result = [result, price - lowest].max
   end
-  maxp
+  result
 end
