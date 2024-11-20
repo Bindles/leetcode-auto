@@ -2,8 +2,7 @@ use std::collections::HashMap;
 impl Solution {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
         let mut map = HashMap::new();
-        for i in 0..nums.len() {
-            let num = nums[i];
+        for (i, &num) in nums.iter().enumerate() { //python for i,num in enumerate(nums)
             let complement = target - num;
 
             if map.contains_key(&complement) {
