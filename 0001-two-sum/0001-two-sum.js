@@ -4,12 +4,13 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    for (let i = 1; i < nums.length; i++) {
-        for (let j = i; j < nums.length; j++) {
-            if (nums[j] + nums[j - i] === target) {
-                return [j - i, j];
-            }
-        }
-    }
-    return [-1, -1];
+    const pairs = nums.flatMap((num1, i) =>
+    nums.map((num2, j) => ({ i, j, sum: num1 + num2 }))
+    );
+
+    const match = pairs.find(pair => pair.i < pair.j && pair.sum === target);
+
+    return match ? [match.i, match.j] : [-1, -1];
+
 };
+
