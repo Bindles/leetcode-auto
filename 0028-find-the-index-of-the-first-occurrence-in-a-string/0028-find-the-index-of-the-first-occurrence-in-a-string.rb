@@ -2,5 +2,5 @@
 # @param {String} needle
 # @return {Integer}
 def str_str(haystack, needle)
-  haystack.include?(needle) ? haystack.index(needle) : -1 
+  haystack.index(needle) || -1 
 end
