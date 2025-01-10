@@ -4,5 +4,9 @@
  * @return {number}
  */
 var prefixCount = function(words, pref) {
-    return words.filter(word => word.slice(0, pref.length) == pref).length
+    let count=0;
+    for (word of words) {
+        if (word.startsWith(pref)) {count+=1;console.log(`${word} starts with ${pref}`)}
+    }
+    return count
 };
