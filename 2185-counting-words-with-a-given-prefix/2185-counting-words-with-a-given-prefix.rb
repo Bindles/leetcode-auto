@@ -2,5 +2,8 @@
 # @param {String} pref
 # @return {Integer}
 def prefix_count(words, pref)
-    words.select{|word| word.index(pref) == 0}.size
+  words.count do |word|
+    word.start_with?(pref)
+  end
 end
+
