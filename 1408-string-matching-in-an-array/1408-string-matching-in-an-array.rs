@@ -1,13 +1,11 @@
 impl Solution {
     pub fn string_matching(words: Vec<String>) -> Vec<String> {
-        let mut words = words.clone();
-        words.sort_by_key(|w| w.len());
-
         words.iter()
-            .filter(|&&ref word| {
-                words.iter().any(|w| w != word && w.contains(word))
+            .filter(|&word| {
+                words.iter().any(|x| x != word && x.contains(word.as_str()))
             })
-            .cloned()
+            .map(|word| word.to_string())
             .collect()
     }
+   
 }
