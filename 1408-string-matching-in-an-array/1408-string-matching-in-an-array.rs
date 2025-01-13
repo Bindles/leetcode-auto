@@ -4,8 +4,7 @@ impl Solution {
             .filter(|&word| {
                 words.iter().any(|x| x != word && x.contains(word.as_str()))
             })
-            .map(|word| word.to_string())
+            .cloned()
             .collect()
     }
-   
 }
