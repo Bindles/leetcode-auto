@@ -3,7 +3,7 @@ impl Solution {
         let mut count : i32 = 0;
         s.as_bytes()
         .windows(2)
-        .for_each(|x| count += (x[0] as i32 - x[1] as i32).abs() ); 
-        count
+        .map(|pair| (pair[0] as i32 - pair[1] as i32).abs() )
+        .sum()
     }
 }
