@@ -4,5 +4,9 @@
  * @return {number[]}
  */
 var findWordsContaining = function(words, x) {
-    return words.flatMap((word, index) => word.includes(x) ? index : []);
+    let res =[];
+    words.forEach((word, index) => {
+        if (word.includes(x)) res.push(index)
+    })
+    return res
 };
